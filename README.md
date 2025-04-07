@@ -1,67 +1,104 @@
-📝 Descrição
-Este script Python compara duas versões de uma planilha Excel (uma versão antiga e uma nova) e gera um relatório detalhado com todas as alterações encontradas, incluindo:
+# 🚚 **Comparador de Planilhas Excel**
 
-Linhas removidas
+## 📜 Descrição
 
-Linhas adicionadas
+O **Comparador de Planilhas Excel** é uma ferramenta desenvolvida em **Python** utilizando a biblioteca **Pandas** para análise de dados. O objetivo é comparar duas versões de uma planilha (antiga e nova) e gerar um relatório detalhado com todas as alterações encontradas.
 
-Linhas com valores alterados
+## 🛠️ **Estrutura do Projeto**
 
-📋 Pré-requisitos
-Python 3.6 ou superior
+### 1. 📚 **Bibliotecas Utilizadas**
 
-Bibliotecas necessárias:
+- **pandas**: Para manipulação e análise dos dados
+- **openpyxl**: Para leitura/escrita de arquivos Excel
+- **datetime**: Para registro do momento da execução
 
-bash
-Copy
-pip install pandas openpyxl
-🛠 Configuração
-Edite as variáveis no final do arquivo Comparativoo.py:
+### 2. ⚙️ **Configuração Inicial**
 
-python
-Copy
-CAMINHO_ANTIGO = "caminho/para/planilha_antiga.xlsx"
-CAMINHO_NOVO = "caminho/para/planilha_nova.xlsx"
-COLUNAS_COMPARAR = ['coluna1', 'coluna2', 'coluna3']  # Colunas a comparar
-CHAVE_PRIMARIA = 'coluna_chave'  # Coluna com identificador único
-Salve o arquivo após as alterações
+O script foi desenvolvido para:
+- Tratar automaticamente valores nulos
+- Verificar a existência das colunas especificadas
+- Gerar relatório com timestamp no nome
 
-▶️ Como Executar
-bash
-Copy
-python Comparativoo.py
-📊 Saída
-O script gera um arquivo Excel chamado relatorio_alteracoes_AAAAMMDD_HHMM.xlsx com três abas:
+---
 
-Resumo das alterações: Metadados e totais de mudanças
+## 🏷️ **Funcionalidades Principais**
 
-Removidas: Linhas presentes apenas na planilha antiga
+### 1. 🔍 **Identificação de Diferenças**
+- Detecta linhas **adicionadas** na nova versão
+- Identifica linhas **removidas** da versão antiga
+- Compara valores nas linhas existentes em ambas versões
 
-Adicionadas: Linhas presentes apenas na planilha nova
+### 2. 📊 **Geração de Relatório**
+Relatório em Excel contendo:
+- **Resumo das alterações**: Totais e metadados
+- **Removidas**: Linhas exclusivas da versão antiga
+- **Adicionadas**: Linhas exclusivas da nova versão  
+- **Alteradas**: Linhas com modificações nos valores
 
-Alteradas: Linhas com diferenças nos valores
+### 3. ✅ **Validações Automáticas**
+- Verifica se colunas especificadas existem em ambas planilhas
+- Confere se a chave primária contém valores únicos
+- Trata valores nulos para evitar falsas diferenças
 
-🔍 Detalhes Técnicos
-Valores nulos são tratados como 'VAZIO' para comparação
+---
 
-O relatório mostra mudanças no formato "valor_antigo → valor_novo"
+## 🏁 **Passo a Passo do Funcionamento**
 
-As linhas alteradas são ordenadas pela chave primária
+1. **Configuração**: Editar no final do script:
+   - Caminhos das planilhas
+   - Colunas para comparação
+   - Coluna chave primária
 
-O script verifica se as colunas especificadas existem em ambas planilhas
+2. **Execução**: Rodar o script via terminal:
+   ```bash
+   python Comparativoo.py
+   ## 📤 **Saída do Relatório**
 
-💡 Melhorias Futuras
-Adicionar suporte para múltiplas abas
+3. **Saida**: O script gera automaticamente um arquivo Excel contendo:
 
-Incluir formatação condicional no Excel de saída
+✔ **Listagem completa** de todas as diferenças encontradas  
+✔ **Comparação lado a lado** dos valores antigos e novos  
+✔ **Destaque automático** para a opção mais vantajosa (menor valor)
 
-Adicionar opção para comparação case-insensitive
+---
 
-Implementar comparação de tipos de dados
+## 📋 **Exemplo de Relatório Gerado**
 
-⚠️ Limitações
-Requer que a chave primária seja única em ambas planilhas
+### 📊 **Resumo das Alterações**
+| Ícone | Item | Valor |
+|-------|------|-------|
+| 📅 | Data de execução | 15/07/2023 14:30 |
+| 📂 | Planilha Antiga | dados_jan.xlsx |
+| 📂 | Planilha Nova | dados_fev.xlsx |
+| ➖ | Registros Removidos | 12 |
+| ➕ | Registros Adicionados | 18 |
+| 🔄 | Registros Alterados | 7 |
 
-Planilhas muito grandes podem exigir otimizações de memória
 
-Não compara formatação ou fórmulas, apenas valores
+
+## ⚠️ **Limitações Técnicas**
+
+### 📦 **Tamanho de Arquivos**
+- Planilhas muito extensas podem requerer:
+  - Maior capacidade de memória RAM
+  - Tempo adicional de processamento
+
+### 🔢 **Tipos de Dados**
+- **Não analisa**:
+  - Fórmulas de células
+  - Formatação visual
+  - Comentários e anotações
+- **Limitado a**:
+  - Valores numéricos
+  - Textos simples
+  - Datas formatadas
+
+### 🎯 **Requisitos Obrigatórios**
+- Coluna de identificação única:
+  - Deve conter valores não repetidos
+  - Pode ser: ID, Código, CPF, etc.
+  - Essencial para comparação precisa
+
+### 🔮 Futuras Funcionalidades
+- [ ] Interface gráfica intuitiva
+
